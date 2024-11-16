@@ -18,6 +18,7 @@ import { Input } from "@/components/ui/input"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Textarea } from "@/components/ui/textarea"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import DashboardCommunity from "@/components/basics/dashboard-community"
 
 export default function Dashboard() {
   const [activeTab, setActiveTab] = useState("home")
@@ -335,6 +336,13 @@ export default function Dashboard() {
           </>
         )}
 
+        {activeTab === "discovery" && (
+          <>
+          {/* TODO: HERE */}
+           <DashboardCommunity />
+          </>
+        )}
+
         {activeTab === "community" && (
           <div className="space-y-6">
             <h1 className="text-3xl font-bold mb-6 text-red-500">Anime Community</h1>
@@ -441,7 +449,7 @@ export default function Dashboard() {
           </div>
         )}
 
-        {activeTab !== "home" && activeTab !== "community" && (
+        {activeTab !== "home" && activeTab !== "community" && activeTab !== "discovery" && (
           <div className="text-center mt-20">
             <h2 className="text-3xl font-bold mb-4 text-red-500">{activeTab.charAt(0).toUpperCase() + activeTab.slice(1)} Page</h2>
             <p className="text-gray-400">This page is under construction. Check back soon for updates!</p>
