@@ -121,7 +121,9 @@ export default function Dashboard() {
           <h2 className="text-sm font-semibold text-gray-400 mb-2">MENU</h2>
           <Button
             variant="ghost"
-            className="w-full justify-start mb-1 hover:bg-red-500 hover:text-white transition-colors"
+            className={`w-full justify-start mb-1 transition-colors hover:bg-red-500 hover:text-white ${
+              activeTab === "home" ? "text-red-500" : ""
+            }`}
             onClick={() => setActiveTab("home")}
           >
             <Home className="mr-2 h-4 w-4"/>
@@ -129,7 +131,9 @@ export default function Dashboard() {
           </Button>
           <Button
             variant="ghost"
-            className="w-full justify-start mb-1 hover:bg-red-500 hover:text-white transition-colors"
+            className={`w-full justify-start mb-1 transition-colors hover:bg-red-500 hover:text-white ${
+              activeTab === "discovery" ? "text-red-500" : ""
+            }`}
             onClick={() => setActiveTab("discovery")}
           >
             <Tv className="mr-2 h-4 w-4"/>
@@ -137,7 +141,9 @@ export default function Dashboard() {
           </Button>
           <Button
             variant="ghost"
-            className="w-full justify-start mb-4 hover:bg-red-500 hover:text-white transition-colors"
+            className={`w-full justify-start mb-1 transition-colors hover:bg-red-500 hover:text-white ${
+              activeTab === "community" ? "text-red-500" : ""
+            }`}
             onClick={() => setActiveTab("community")}
           >
             <User className="mr-2 h-4 w-4"/>
@@ -146,7 +152,9 @@ export default function Dashboard() {
           <h2 className="text-sm font-semibold text-gray-400 mb-2">LIBRARY</h2>
           <Button
             variant="ghost"
-            className="w-full justify-start mb-1 hover:bg-red-500 hover:text-white transition-colors"
+            className={`w-full justify-start mb-1 transition-colors hover:bg-red-500 hover:text-white ${
+              activeTab === "recent" ? "text-red-500" : ""
+            }`}
             onClick={() => setActiveTab("recent")}
           >
             <Play className="mr-2 h-4 w-4"/>
@@ -154,7 +162,9 @@ export default function Dashboard() {
           </Button>
           <Button
             variant="ghost"
-            className="w-full justify-start mb-1 hover:bg-red-500 hover:text-white transition-colors"
+            className={`w-full justify-start mb-1 transition-colors hover:bg-red-500 hover:text-white ${
+              activeTab === "my-list" ? "text-red-500" : ""
+            }`}
             onClick={() => setActiveTab("my-list")}
           >
             <List className="mr-2 h-4 w-4"/>
@@ -162,7 +172,9 @@ export default function Dashboard() {
           </Button>
           <Button
             variant="ghost"
-            className="w-full justify-start mb-4 hover:bg-red-500 hover:text-white transition-colors"
+            className={`w-full justify-start mb-1 transition-colors hover:bg-red-500 hover:text-white ${
+              activeTab === "downloads" ? "text-red-500" : ""
+            }`}
             onClick={() => setActiveTab("downloads")}
           >
             <Upload className="mr-2 h-4 w-4"/>
@@ -170,7 +182,9 @@ export default function Dashboard() {
           </Button>
           <Button
             variant="ghost"
-            className="w-full justify-start mb-1 hover:bg-red-500 hover:text-white transition-colors"
+            className={`w-full justify-start mb-1 transition-colors hover:bg-red-500 hover:text-white ${
+              activeTab === "settings" ? "text-red-500" : ""
+            }`}
             onClick={() => setActiveTab("settings")}
           >
             <Settings className="mr-2 h-4 w-4"/>
@@ -178,7 +192,9 @@ export default function Dashboard() {
           </Button>
           <Button
             variant="ghost"
-            className="w-full justify-start mb-1 hover:bg-red-500 hover:text-white transition-colors"
+            className={`w-full justify-start mb-1 transition-colors hover:bg-red-500 hover:text-white ${
+              activeTab === "help" ? "text-red-500" : ""
+            }`}
             onClick={() => setActiveTab("help")}
           >
             <HelpCircle className="mr-2 h-4 w-4"/>
