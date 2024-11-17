@@ -33,25 +33,38 @@ import {
 } from "@/components/ui/tooltip"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import Image from "next/image"
+import Image, { StaticImageData } from "next/image"
+
+// import images
+import key0 from "@/app/assets/key(0).jpeg"
+import key1 from "@/app/assets/key(1).jpeg"
+import key2 from "@/app/assets/key(2).jpeg"
+import key3 from "@/app/assets/key(3).jpeg"
+import key4 from "@/app/assets/key(4).jpeg"
+import key5 from "@/app/assets/key(5).jpeg"
+import key6 from "@/app/assets/key(6).jpeg"
+import key7 from "@/app/assets/key(7).jpeg"
+import key8 from "@/app/assets/key(8).jpeg"
+import key9 from "@/app/assets/key(9).jpeg"
 
 interface Member {
   id: number;
   name: string;
-  avatar: string;
+  avatar: StaticImageData;
 }
 
 interface Moderator {
   id: number;
   name: string;
-  avatar: string;
+  avatar: StaticImageData;
   role: string;
 }
 
+const avatars = [key0, key1, key2, key3, key4, key5, key6, key7, key8, key9];
 export interface Anime {
   id: number;
   title: string;
-  image: string;
+  image: StaticImageData;
   rating: number;
   year: number;
   genre: string;
@@ -67,7 +80,7 @@ const generateMembers = (count: number): Member[] => {
   return Array.from({ length: count }, (_, i) => ({
     id: i + 1,
     name: `Member ${i + 1}`,
-    avatar: `/placeholder.svg?height=32&width=32&text=M${i + 1}`,
+    avatar: avatars[(i + 1) % avatars.length],
   }));
 };
 
@@ -75,16 +88,20 @@ const generateModerators = (count: number): Moderator[] => {
   return Array.from({ length: count }, (_, i) => ({
     id: i + 1,
     name: `Moderator ${i + 1}`,
-    avatar: `/placeholder.svg?height=64&width=64&text=Mod${i + 1}`,
+    avatar: avatars[(i + 1) % avatars.length],
     role: i === 0 ? 'Admin' : 'Moderator',
   }));
+};
+
+const generateRandomNumber = (min: number = 0, max: number = 9) => {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
 const animeData: Anime[] = [
   {
     id: 1,
     title: "Bleach: Thousand-Year Blood War",
-    image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/AttackOnTitan-bx7dJ4l2aVU9YJQGIXDyhJ9Hdx3Hd1.jpg",
+    image: avatars[(generateRandomNumber()) % avatars.length],
     rating: 9,
     year: 2014,
     genre: "Action",
@@ -98,7 +115,7 @@ const animeData: Anime[] = [
   {
     id: 2,
     title: "Re:ZERO -Starting Life in Another World",
-    image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Random-18c49dcME3qIA0hHxPVBN5Hlnh5toW.png",
+    image: avatars[(generateRandomNumber()) % avatars.length],
     rating: 8.9,
     year: 2016,
     genre: "Fantasy",
@@ -112,7 +129,7 @@ const animeData: Anime[] = [
   {
     id: 3,
     title: "One Piece",
-    image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Hikuyu-5a8ES9Ie4r6EDsZHIMAv2MBDDH6beV.jpg",
+    image: avatars[(generateRandomNumber()) % avatars.length],
     rating: 9.5,
     year: 1999,
     genre: "Adventure",
@@ -122,11 +139,11 @@ const animeData: Anime[] = [
     totalMembers: 50000,
     pendingRequests: 137,
     members: generateMembers(200),
-  },
+  } ,
   {
     id: 4,
     title: "Alien Stage",
-    image: "/placeholder.svg?height=400&width=300&text=Alien+Stage",
+    image: avatars[(generateRandomNumber()) % avatars.length],
     rating: 8.7,
     year: 2023,
     genre: "Sci-fi",
@@ -136,14 +153,14 @@ const animeData: Anime[] = [
     totalMembers: 5000,
     pendingRequests: 15,
     members: generateMembers(80),
-  },
+  }, 
 ]
 
 const mangaData: Anime[] = [
   {
     id: 5,
     title: "Berserk",
-    image: "/placeholder.svg?height=400&width=300&text=Berserk",
+    image: avatars[(generateRandomNumber()) % avatars.length],
     rating: 9.4,
     year: 1989,
     genre: "Dark Fantasy",
@@ -157,7 +174,7 @@ const mangaData: Anime[] = [
   {
     id: 6,
     title: "Vagabond",
-    image: "/placeholder.svg?height=400&width=300&text=Vagabond",
+    image: avatars[(generateRandomNumber()) % avatars.length],
     rating: 9.2,
     year: 1998,
     genre: "Historical",
@@ -174,7 +191,7 @@ const manhwaData: Anime[] = [
   {
     id: 7,
     title: "Solo Leveling",
-    image: "/placeholder.svg?height=400&width=300&text=Solo+Leveling",
+    image: avatars[(generateRandomNumber()) % avatars.length],
     rating: 8.9,
     year: 2018,
     genre: "Action",
@@ -188,7 +205,7 @@ const manhwaData: Anime[] = [
   {
     id: 8,
     title: "Tower of God",
-    image: "/placeholder.svg?height=400&width=300&text=Tower+of+God",
+    image: avatars[(generateRandomNumber()) % avatars.length],
     rating: 8.7,
     year: 2010,
     genre: "Fantasy",
@@ -205,7 +222,7 @@ const manhuaData: Anime[] = [
   {
     id: 9,
     title: "The King's Avatar",
-    image: "/placeholder.svg?height=400&width=300&text=The+King's+Avatar",
+    image: avatars[(generateRandomNumber()) % avatars.length],
     rating: 8.6,
     year: 2016,
     genre: "Gaming",
@@ -219,7 +236,7 @@ const manhuaData: Anime[] = [
   {
     id: 10,
     title: "Tales of Demons and Gods",
-    image: "/placeholder.svg?height=400&width=300&text=Tales+of+Demons+and+Gods",
+    image: avatars[(generateRandomNumber()) % avatars.length],
     rating: 8.4,
     year: 2015,
     genre: "Fantasy",
@@ -229,7 +246,7 @@ const manhuaData: Anime[] = [
     totalMembers: 18000,
     pendingRequests: 47,
     members: generateMembers(110),
-  },
+  }, 
 ]
 
 export default function DashboardCommunity() {
@@ -413,7 +430,7 @@ export default function DashboardCommunity() {
                             <TooltipTrigger asChild>
                               <div className="flex flex-col items-center">
                                 <Avatar className="w-16 h-16 border-2 border-gray-800/50">
-                                  <AvatarImage src={mod.avatar} alt={mod.name} />
+                                  <AvatarImage src={mod.avatar.src} alt={mod.name} />
                                   <AvatarFallback className="bg-[#1A1F29]">{mod.name.slice(0, 2)}</AvatarFallback>
                                 </Avatar>
                                 <span className="text-xs mt-2 text-gray-400">{mod.name}</span>
@@ -467,7 +484,7 @@ export default function DashboardCommunity() {
                     <div className="flex flex-wrap gap-2">
                       {selectedAnime.members.slice(0, 10).map((member) => (
                         <Avatar key={member.id} className="w-8 h-8 border border-gray-800/50">
-                          <AvatarImage src={member.avatar} alt={member.name} />
+                          <AvatarImage src={member.avatar.src} alt={member.name} />
                           <AvatarFallback className="bg-[#1A1F29]">{member.name.slice(0, 2)}</AvatarFallback>
                         </Avatar>
                       ))}
