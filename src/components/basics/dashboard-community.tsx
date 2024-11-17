@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from "react"
-import { ChevronLeft, Filter, Search, Star, Users, Clock, ArrowLeft } from 'lucide-react'
+import { ArrowLeft, Star } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import {
   Card,
@@ -10,21 +10,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet"
 import {
   Tooltip,
   TooltipContent,
@@ -32,7 +17,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Tabs,TabsList, TabsTrigger } from "@/components/ui/tabs"
 import Image, { StaticImageData } from "next/image"
 
 // import images

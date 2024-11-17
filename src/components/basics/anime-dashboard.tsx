@@ -1,23 +1,8 @@
 'use client'
 
 import { useState, useEffect } from "react"
-import { ChevronLeft, Filter, Search, Star, Users, Clock, ArrowLeft } from 'lucide-react'
+import { Star, ArrowLeft } from 'lucide-react'
 import { Button } from "@/components/ui/button"
-import {
-    Card,
-    CardContent,
-    CardFooter,
-    CardHeader,
-    CardTitle,
-} from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/ui/select"
 import {
     Tooltip,
     TooltipContent,
@@ -25,7 +10,7 @@ import {
     TooltipTrigger,
 } from "@/components/ui/tooltip"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import Image, { StaticImageData } from "next/image"
 import type { AnimeData } from "@/lib/types/jikan-anime-response"
 // import images
@@ -148,7 +133,7 @@ export default function AnimeDashboard() {
                                 ? 'bg-red-500/10 text-red-500 hover:bg-red-500/20'
                                 : 'bg-red-500 hover:bg-red-600 text-white'
                         }`}
-                        onClick={(e) => handleRequestToJoin(anime.mal_id, e)}
+                        onClick={(e: any) => handleRequestToJoin(anime.mal_id, e)}
                     >
                         {anime.joined ? "Requested" : "Join"}
                     </CardItem>

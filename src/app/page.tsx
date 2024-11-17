@@ -12,14 +12,40 @@ import {
   CardFooter,
 } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
-import Image from "next/image"
+import Image, { StaticImageData } from "next/image"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Input } from "@/components/ui/input"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Textarea } from "@/components/ui/textarea"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import DashboardCommunity from "@/components/basics/dashboard-community"
 import AnimeDashboard from "@/components/basics/anime-dashboard"
+
+// Define the type for the images
+type AnimeImages = {
+  [key: string]: StaticImageData;
+};
+
+// Import images
+import key0 from "@/app/assets/key(0).jpeg";
+import key1 from "@/app/assets/key(1).jpeg";
+import key2 from "@/app/assets/key(2).jpeg";
+import key3 from "@/app/assets/key(3).jpeg";
+import key4 from "@/app/assets/key(4).jpeg";
+import key5 from "@/app/assets/key(5).jpeg";
+import key6 from "@/app/assets/key(6).jpeg";
+import key7 from "@/app/assets/key(7).jpeg";
+
+// Create an object to hold the images
+const animeImages: AnimeImages = {
+  key0,
+  key1,
+  key2,
+  key3,
+  key4,
+  key5,
+  key6,
+  key7,
+};
 
 export default function Dashboard() {
   const [activeTab, setActiveTab] = useState("home")
@@ -28,7 +54,7 @@ export default function Dashboard() {
     {
       id: 1,
       user: "AnimeEnthusiast",
-      avatar: "/placeholder.svg?height=40&width=40&text=AE",
+      avatar: animeImages.key0.src || "",
       title: "Just finished Attack on Titan!",
       content: "What an incredible journey! The ending left me speechless. What did you all think?",
       image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/AttackOnTitan-bx7dJ4l2aVU9YJQGIXDyhJ9Hdx3Hd1.jpg",
@@ -42,7 +68,7 @@ export default function Dashboard() {
     {
       id: 2,
       user: "SportsAnimeGuy",
-      avatar: "/placeholder.svg?height=40&width=40&text=SG",
+      avatar: animeImages.key1.src,
       title: "Haikyuu!! is the best sports anime ever!",
       content: "The character development and intense matches keep me on the edge of my seat. What's your favorite sports anime?",
       image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Hikuyu-5a8ES9Ie4r6EDsZHIMAv2MBDDH6beV.jpg",
@@ -84,7 +110,7 @@ export default function Dashboard() {
     { title: "Haikyuu!!", imageUrl: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Hikuyu-5a8ES9Ie4r6EDsZHIMAv2MBDDH6beV.jpg" },
     { title: "Kaguya-sama: Love Is War", imageUrl: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Random-18c49dcME3qIA0hHxPVBN5Hlnh5toW.png" },
     { title: "Attack on Titan", imageUrl: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/AttackOnTitan-bx7dJ4l2aVU9YJQGIXDyhJ9Hdx3Hd1.jpg" },
-    { title: "One Piece", imageUrl: "/placeholder.svg?height=300&width=200&text=One+Piece" },
+    { title: "One Piece", imageUrl: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/OnePiece.jpg" },
   ]
 
   const handlePostSubmit = (e: React.FormEvent) => {
@@ -92,7 +118,7 @@ export default function Dashboard() {
     const post = {
       id: posts.length + 1,
       user: "CurrentUser",
-      avatar: "/placeholder.svg?height=40&width=40&text=CU",
+      avatar: animeImages.key0.src,
       title: newPost.title,
       content: newPost.content,
       image: "",
