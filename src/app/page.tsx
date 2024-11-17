@@ -19,6 +19,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Textarea } from "@/components/ui/textarea"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import DashboardCommunity from "@/components/basics/dashboard-community"
+import AnimeDashboard from "@/components/basics/anime-dashboard"
 
 export default function Dashboard() {
   const [activeTab, setActiveTab] = useState("home")
@@ -222,7 +223,7 @@ export default function Dashboard() {
             </Button>
             <Button
               variant="ghost"
-              className="hover:bg-red-500 hover:text-white transition-colors"
+              className={"hover:bg-red-500 hover:text-white transition-colors"}
             >
               Movie
             </Button>
@@ -355,7 +356,8 @@ export default function Dashboard() {
         {activeTab === "discovery" && (
           <>
           {/* TODO: HERE */}
-           <DashboardCommunity />
+           {/* <DashboardCommunity /> */}
+           <AnimeDashboard />
           </>
         )}
 
