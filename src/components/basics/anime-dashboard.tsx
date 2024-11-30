@@ -61,16 +61,30 @@ const moderators = generateModerators(3);
 
 export default function AnimeDashboard() {
     const [animeData, setAnimeData] = useState<AnimeData[]>([])
+    const [tabListData, setTabListData] = useState<string[]>([])
     const [selectedAnime, setSelectedAnime] = useState<AnimeData | null>(null)
     const [view, setView] = useState<"grid" | "detail">("grid")
     const [isLoading, setIsLoading] = useState(true)
-
+    const [selectedTab, setSelectedTab] = useState<string>("tv")
+    const [pages, setPages] = useState(1);
+    const [allPages, setAllPages] = useState(1);
     useEffect(() => {
         const fetchAnimeData = async () => {
             try {
                 const response = await fetch('https://api.jikan.moe/v4/anime')
                 const data = await response.json()
+                console.log('Anime data:', data.data)
+
+                
                 setAnimeData(data.data)
+                let types : Set<string> = new Set()
+                data.data.forEach((anime: AnimeData) => {
+                    types.add(anime?.type ?? "N/A")
+                })
+
+                setTabListData([...types])
+
+                setAllPages(Math.ceil(data.pagination.items.total / data.pagination.items.count))
                 setIsLoading(false)
             } catch (error) {
                 console.error('Error fetching anime data:', error)
@@ -149,14 +163,44 @@ export default function AnimeDashboard() {
                 <div className="container mx-auto px-4 py-4">
                     <Tabs defaultValue="anime" className="w-full">
                         <TabsList className="w-full inline-flex h-9 items-center justify-start rounded-none p-0 bg-transparent">
-                            <TabsTrigger
+                            {/* <TabsTrigger
                                 value="anime"
                                 className="px-4 py-2 data-[state=active]:bg-transparent data-[state=active]:text-red-500 hover:text-red-400"
                             >
                                 Anime
-                            </TabsTrigger>
+                            </TabsTrigger> */}
+                            {tabListData.map((tab) => (
+                                <TabsTrigger
+                                    key={tab.toLowerCase()}
+                                    value={tab.toLowerCase()}
+                                    className="px-4 py-2 data-[state=active]:bg-transparent data-[state=active]:text-red-500 hover:text-red-400"
+                                    onClick={() => setSelectedTab(tab.toLowerCase())}
+                                >
+                                    {tab}
+                                </TabsTrigger>
+                            ))}
+
+                            
                         </TabsList>
                     </Tabs>
+
+                    <div className="flex justify-end items-center space-x-4">
+                        <span className="text-gray-400">Page {pages} of {allPages}</span>
+                        <Button
+                            variant="outline"
+                            className="border-gray-800 bg-[#151921] hover:bg-[#1A1F29] text-gray-300"
+                            onClick={() => setPages((prev) => prev - 1)}
+                        >
+                            Prev
+                        </Button>
+                        <Button
+                            variant="outline"
+                            className="border-gray-800 bg-[#151921] hover:bg-[#1A1F29] text-gray-300"
+                            onClick={() => setPages((prev) => prev + 1)}
+                        >
+                            Next
+                        </Button>
+                    </div>
                 </div>
             </nav>
 
@@ -166,7 +210,7 @@ export default function AnimeDashboard() {
                     <div className="text-center">Loading...</div>
                 ) : view === "grid" ? (
                     <div className="grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-3">
-                        {animeData.map((anime: AnimeData) => (
+                        {animeData.filter(x => x.type?.toLowerCase() == selectedTab).map((anime: AnimeData) => (
                             <div key={anime.mal_id} className="w-full" onClick={() => {
                                 setSelectedAnime(anime)
                                 setView("detail")

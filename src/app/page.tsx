@@ -34,6 +34,7 @@ import key4 from "@/app/assets/key(4).jpeg";
 import key5 from "@/app/assets/key(5).jpeg";
 import key6 from "@/app/assets/key(6).jpeg";
 import key7 from "@/app/assets/key(7).jpeg";
+import AnimeDashboardNew from "@/components/basics/anime-dashboard-new"
 
 // Create an object to hold the images
 const animeImages: AnimeImages = {
@@ -383,7 +384,8 @@ export default function Dashboard() {
           <>
           {/* TODO: HERE */}
            {/* <DashboardCommunity /> */}
-           <AnimeDashboard />
+           {/* <AnimeDashboard /> */}
+           <AnimeDashboardNew />
           </>
         )}
 
